@@ -1,0 +1,23 @@
+# Secrets and personal data -- never commit these.
+.env
+*.db
+*.sqlite3
+renders/
+
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+*.egg-info/
+dist/
+build/
+.pytest_cache/
+.ruff_cache/
+.mypy_cache/
+# uv.lock is intentionally committed -- this is an application, so pinned deps matter.
+
+# OS / editor
+.DS_Store
+.idea/
+.vscode/

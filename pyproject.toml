@@ -1,0 +1,50 @@
+[project]
+name = "naukri-mcp-server"
+version = "0.1.0"
+description = "MCP server for job search, ATS resume tailoring, applying, and application tracking"
+readme = "README.md"
+requires-python = ">=3.11"
+dependencies = [
+    "mcp[cli]>=2.0.0",
+    "sqlalchemy>=2.0",
+    "pydantic>=2.7",
+    "pydantic-settings>=2.2",
+    "httpx>=0.27",
+    "pdfplumber>=0.11",
+    "python-docx>=1.1",
+    "rapidfuzz>=3.9",
+    "reportlab>=4.2",
+    # Uses the OS trust store, so corporate TLS interception verifies correctly.
+    "truststore>=0.9",
+]
+
+[project.optional-dependencies]
+llm = [
+    "anthropic>=0.40",
+    "groq>=0.11",
+]
+
+[project.scripts]
+naukri-mcp = "naukri_mcp.server:main"
+
+[dependency-groups]
+dev = [
+    "pytest>=8.2",
+    "pytest-asyncio>=0.23",
+    "respx>=0.21",
+]
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+packages = ["naukri_mcp"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+asyncio_mode = "auto"
+
+[tool.ruff]
+line-length = 100
+target-version = "py311"
